@@ -23,14 +23,13 @@ $bg: #000000;
 
   .header__container {
     margin: 0;
-    padding: 0.75rem 2rem; /* smaller vertical padding */
+    padding: 0.75rem 2rem; 
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
   }
 
-    /* burger button (hidden on desktop) */
     .header__burger {
       display: none;
       background: transparent;
@@ -40,7 +39,6 @@ $bg: #000000;
       color: $primary;
       width: 44px;
       height: 36px;
-      /* display set via media query */
       align-items: center;
       justify-content: center;
     }
@@ -113,84 +111,72 @@ $bg: #000000;
     }
   }
 
-  @media (max-width: 720px) {
-
-    .header__nav {
-      .header__menu {
-        gap: 0.5rem;
-        &-item a {
-          padding: 0.35rem 0.45rem;
-          font-size: 0.95rem;
-        }
-      }
-    }
-      .header__container {
-    /* horizontal padding matches header container, plus space for the burger/close button */
-    padding-left: 1rem;
-    padding-right: calc(1rem + 44px + env(safe-area-inset-right, 0px));
-    box-sizing: border-box;
-      }
 
       /* show burger */
       .header__burger {
         display: block;
       }
 
-      /* collapse nav by default on mobile */
+      /* desktop horizontal menu becomes hidden; drawer will show on open */
       .header__nav {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
+        .header__menu { display: none; }
+      }
+
+      /* drawer + overlay approach */
+      .header__overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        opacity: 0;
+        transition: opacity 200ms ease;
+        z-index: 40;
+      }
+
+      .header__overlay.is-visible { display: block; opacity: 1; }
+
+      .header__drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(360px, 85vw);
         background: $bg;
-        /* same horizontal padding as header container for consistent UX */
-        padding: 0 1rem;
-        transform-origin: top;
-        overflow: hidden;
-        max-height: 0;
-        transition: max-height 240ms ease;
-        z-index: 45; /* below header which has z-index 50 */
-      }
-
-      .header__menu {
+        box-shadow: -8px 0 24px rgba(0,0,0,0.4);
+        transform: translateX(100%);
+        transition: transform 260ms cubic-bezier(.2,.9,.2,1);
+        z-index: 45;
+        padding: 1.25rem 1rem;
+        box-sizing: border-box;
+        display: flex;
         flex-direction: column;
-        gap: 0;
-        align-items: flex-end; /* align links to the right */
-        width: 100%;
-        box-sizing: border-box;
-        padding-right: 0.5rem; /* extra inner spacing so text doesn't touch the padding edge */
+        gap: 1rem;
       }
 
-      .header__menu-item a {
+      .header__drawer.is-open { transform: translateX(0); }
+
+      .drawer__close {
+        margin-left: auto;
+        background: transparent;
+        border: 0;
+        color: $primary;
+        font-size: 1.75rem;
+        line-height: 1;
+        cursor: pointer;
+        padding: 0.25rem 0.5rem;
+      }
+
+      .header__drawer .header__menu {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+
+      .header__drawer .header__menu-item a {
+        padding: 0.75rem 0.5rem;
         display: block;
-        /* vertical spacing kept here; horizontal spacing comes from .header__nav padding */
-        padding: 1rem 0;
-        border-top: 1px solid rgba(255,255,255,0.03);
-        text-align: right; /* push text to the right */
-        width: 100%;
-        box-sizing: border-box;
+        text-align: left;
+        font-size: 1rem;
       }
-
-      /* when header has .is-open, expand menu */
-      &.is-open {
-        .header__nav {
-          max-height: 220px; /* limit height so it doesn't cover whole screen */
-          overflow-y: auto;
-        }
-
-        /* animate burger to X */
-        .header__burger {
-          .burger__inner {
-            transform: rotate(45deg);
           }
-          .burger__inner::before {
-            transform: rotate(90deg);
-            top: 0;
-          }
-          .burger__inner::after {
-            opacity: 0;
-          }
-        }
-      }
-  }
-}
