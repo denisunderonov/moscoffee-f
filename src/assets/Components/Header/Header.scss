@@ -1,0 +1,196 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+$primary: #ffffff; 
+$accent: #e67e22;
+$bg: #000000;
+
+.header {
+  width: 100%;
+  background: $bg;
+  color: $primary;
+  padding: 0;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  font-weight: 700;
+  position: relative;
+  z-index: 50;
+
+  .header__container {
+    margin: 0;
+    padding: 0.75rem 2rem; /* smaller vertical padding */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+    /* burger button (hidden on desktop) */
+    .header__burger {
+      display: none;
+      background: transparent;
+      border: 0;
+      padding: 0.5rem;
+      cursor: pointer;
+      color: $primary;
+      width: 44px;
+      height: 36px;
+      /* display set via media query */
+      align-items: center;
+      justify-content: center;
+    }
+
+    .burger__box {
+      width: 24px;
+      height: 18px;
+      display: inline-block;
+      position: relative;
+    }
+
+    .burger__inner {
+      background-color: $primary;
+      width: 100%;
+      height: 2px;
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      transition: transform 220ms ease, opacity 220ms ease;
+    }
+
+    .burger__inner::before,
+    .burger__inner::after {
+      content: '';
+      background-color: $primary;
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      left: 0;
+      transition: transform 220ms ease, opacity 220ms ease;
+    }
+
+    .burger__inner::before {
+      top: -7px;
+    }
+
+    .burger__inner::after {
+      top: 7px;
+    }
+
+  &__logo a {
+    color: $primary;
+    font-weight: 700;
+    font-size: 1.125rem;
+    text-decoration: none;
+  }
+
+  &__nav {
+    .header__menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 0.75rem;
+
+      &-item a {
+        color: $primary;
+        text-decoration: none;
+        padding: 0.5rem 0.6rem;
+        border-radius: 6px;
+        transition: background-color 0.15s ease, color 0.15s ease;
+
+        &:hover {
+          background: rgba(230,126,34,0.12);
+          color: $accent;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 720px) {
+
+    .header__nav {
+      .header__menu {
+        gap: 0.5rem;
+        &-item a {
+          padding: 0.35rem 0.45rem;
+          font-size: 0.95rem;
+        }
+      }
+    }
+      .header__container {
+    /* horizontal padding matches header container, plus space for the burger/close button */
+    padding-left: 1rem;
+    padding-right: calc(1rem + 44px + env(safe-area-inset-right, 0px));
+    box-sizing: border-box;
+      }
+
+      /* show burger */
+      .header__burger {
+        display: block;
+      }
+
+      /* collapse nav by default on mobile */
+      .header__nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: $bg;
+        /* same horizontal padding as header container for consistent UX */
+        padding: 0 1rem;
+        transform-origin: top;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 240ms ease;
+        z-index: 45; /* below header which has z-index 50 */
+      }
+
+      .header__menu {
+        flex-direction: column;
+        gap: 0;
+        align-items: flex-end; /* align links to the right */
+        width: 100%;
+        box-sizing: border-box;
+        padding-right: 0.5rem; /* extra inner spacing so text doesn't touch the padding edge */
+      }
+
+      .header__menu-item a {
+        display: block;
+        /* vertical spacing kept here; horizontal spacing comes from .header__nav padding */
+        padding: 1rem 0;
+        border-top: 1px solid rgba(255,255,255,0.03);
+        text-align: right; /* push text to the right */
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* when header has .is-open, expand menu */
+      &.is-open {
+        .header__nav {
+          max-height: 220px; /* limit height so it doesn't cover whole screen */
+          overflow-y: auto;
+        }
+
+        /* animate burger to X */
+        .header__burger {
+          .burger__inner {
+            transform: rotate(45deg);
+          }
+          .burger__inner::before {
+            transform: rotate(90deg);
+            top: 0;
+          }
+          .burger__inner::after {
+            opacity: 0;
+          }
+        }
+      }
+  }
+}
