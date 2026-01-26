@@ -112,17 +112,15 @@ $bg: #000000;
   }
 
 
-      /* show burger */
+// Бургер меню
       .header__burger {
         display: block;
       }
 
-      /* desktop horizontal menu becomes hidden; drawer will show on open */
       .header__nav {
         .header__menu { display: none; }
       }
 
-      /* drawer + overlay approach */
       .header__overlay {
         display: none;
         position: fixed;
@@ -155,28 +153,42 @@ $bg: #000000;
 
       .header__drawer.is-open { transform: translateX(0); }
 
-      .drawer__close {
-        margin-left: auto;
-        background: transparent;
-        border: 0;
-        color: $primary;
-        font-size: 1.75rem;
-        line-height: 1;
-        cursor: pointer;
-        padding: 0.25rem 0.5rem;
+      .drawer__burger {
+        display: block !important;
+        align-self: flex-end;
+        margin-bottom: 0.5rem;
       }
 
       .header__drawer .header__menu {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
-        margin-top: 0.5rem;
       }
 
       .header__drawer .header__menu-item a {
-        padding: 0.75rem 0.5rem;
         display: block;
         text-align: left;
         font-size: 1rem;
+        transition: none; /* no hover effects in drawer */
+
+        &:hover {
+          background: transparent;
+          color: inherit;
+        }
+      }
+
+      &.is-open .header__burger {
+        .burger__inner {
+          transform: rotate(45deg);
+        }
+
+        .burger__inner::before {
+          transform: rotate(90deg);
+          top: 0;
+        }
+
+        .burger__inner::after {
+          opacity: 0;
+        }
       }
           }
