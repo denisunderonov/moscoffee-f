@@ -1,0 +1,125 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.about {
+  width: 100%;
+  padding-bottom: $spacing-4xl;
+
+  &__header {
+    @include gradient-primary;
+    color: $color-white;
+    padding: $spacing-4xl $spacing-xl;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: $font-size-5xl;
+    margin-bottom: $spacing-md;
+    color: $color-white;
+  }
+
+  &__subtitle {
+    font-size: $font-size-xl;
+    opacity: 0.9;
+  }
+
+  &__section {
+    margin-top: $spacing-4xl;
+  }
+
+  &__content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  &__section-title {
+    @include section-title;
+  }
+
+  &__text {
+    font-size: $font-size-lg;
+    line-height: 1.8;
+    color: $color-text;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: $spacing-xl;
+    margin-top: $spacing-xl;
+  }
+
+  &__feature {
+    background: $color-light;
+    padding: $spacing-xl;
+    border-radius: $radius-lg;
+    border-left: 4px solid $color-accent;
+  }
+
+  &__feature-title {
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-md;
+    color: $color-primary;
+  }
+
+  &__feature-text {
+    color: $color-text-light;
+    line-height: 1.6;
+  }
+
+  &__contacts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $spacing-xl;
+    margin-top: $spacing-xl;
+  }
+
+  @include respond-to(md) {
+    &__header {
+      padding: $spacing-3xl $spacing-lg;
+    }
+
+    &__title {
+      font-size: $font-size-3xl;
+    }
+
+    &__subtitle {
+      font-size: $font-size-base;
+    }
+
+    &__section-title {
+      font-size: $font-size-3xl;
+    }
+
+    &__features {
+      grid-template-columns: 1fr;
+    }
+
+    &__contacts {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.contact {
+  &__item {
+    @include card;
+    padding: $spacing-xl;
+    text-align: center;
+    border-top: 3px solid $color-accent;
+  }
+
+  &__label {
+    font-size: $font-size-lg;
+    color: $color-secondary;
+    margin-bottom: $spacing-sm;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__value {
+    font-size: $font-size-base;
+    color: $color-text;
+    line-height: 1.6;
+  }
+}

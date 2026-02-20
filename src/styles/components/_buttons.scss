@@ -1,0 +1,35 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.btn {
+  @include button-base;
+
+  &--primary {
+    background-color: $color-accent;
+    color: $color-white;
+    border-color: $color-accent;
+
+    &:hover {
+      background-color: $color-secondary;
+      border-color: $color-secondary;
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  &--secondary {
+    background-color: transparent;
+    color: $color-white;
+    border-color: $color-white;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
+  }
+
+  &--large {
+    padding: $spacing-md $spacing-2xl;
+    font-size: $font-size-lg;
+  }
+}

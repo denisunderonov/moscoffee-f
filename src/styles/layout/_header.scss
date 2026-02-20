@@ -1,0 +1,214 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+$_header-height: 64px;
+$_burger-size: 44px;
+$_burger-line-width: 26px;
+$_burger-line-height: 2px;
+$_burger-gap: 8px;
+$_drawer-width: min(320px, 80vw);
+$_transition-duration: 300ms;
+$_transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: $_header-height;
+  background: $color-dark;
+  color: $color-white;
+  font-family: 'Space Mono', monospace;
+  text-transform: uppercase;
+  font-weight: $font-weight-bold;
+  z-index: $z-index-fixed;
+
+  &__container {
+    @include flex-between;
+    height: 100%;
+    padding: 0 $spacing-xl;
+    max-width: $container-max-width;
+    margin: 0 auto;
+  }
+
+  // ── Logo ───────────────────────────────────────────
+  &__logo {
+    color: $color-white;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-lg;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+  }
+
+  // ── Desktop nav ────────────────────────────────────
+  &__nav {
+    display: none;
+
+    @media (min-width: $breakpoint-md) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    gap: $spacing-xs;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__menu-item a {
+    display: block;
+    color: $color-white;
+    text-decoration: none;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: $radius-sm;
+    font-size: $font-size-sm;
+    letter-spacing: 0.04em;
+    transition: background $_transition-duration $_transition-ease,
+                color $_transition-duration $_transition-ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  // ── Burger button ──────────────────────────────────
+  &__burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $_burger-size;
+    height: $_burger-size;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    @media (min-width: $breakpoint-md) {
+      display: none;
+    }
+  }
+
+  &__burger-line {
+    display: block;
+    width: $_burger-line-width;
+    height: $_burger-line-height;
+    background: $color-white;
+    border-radius: 1px;
+    position: relative;
+    transition: background $_transition-duration $_transition-ease;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: $_burger-line-height;
+      background: $color-white;
+      border-radius: 1px;
+      transition: transform $_transition-duration $_transition-ease,
+                  top $_transition-duration $_transition-ease;
+    }
+
+    &::before {
+      top: -$_burger-gap;
+    }
+
+    &::after {
+      top: $_burger-gap;
+    }
+  }
+
+  &__burger.is-active &__burger-line {
+    background: transparent;
+
+    &::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+  }
+
+  // ── Overlay ────────────────────────────────────────
+  &__overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: $z-index-modal-backdrop;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $_transition-duration $_transition-ease,
+                visibility $_transition-duration $_transition-ease;
+
+    &.is-visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (min-width: $breakpoint-md) {
+      display: none;
+    }
+  }
+
+  // ── Drawer ─────────────────────────────────────────
+  &__drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: $_drawer-width;
+    height: 100dvh;
+    background: $color-dark;
+    z-index: $z-index-modal;
+    padding: calc(#{$_header-height} + #{$spacing-lg}) $spacing-xl $spacing-xl;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform $_transition-duration $_transition-ease,
+                visibility $_transition-duration $_transition-ease;
+
+    &.is-open {
+      transform: translateX(0);
+      visibility: visible;
+    }
+
+    @media (min-width: $breakpoint-md) {
+      display: none;
+    }
+  }
+
+  &__drawer-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  &__drawer-item a {
+    display: block;
+    color: $color-white;
+    text-decoration: none;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-md;
+    font-size: $font-size-lg;
+    letter-spacing: 0.04em;
+    transition: background $_transition-duration $_transition-ease;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    &:active {
+      background: rgba(255, 255, 255, 0.14);
+    }
+  }
+}

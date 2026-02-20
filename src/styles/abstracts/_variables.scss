@@ -1,0 +1,84 @@
+// Colors
+$color-primary: #2c1810;
+$color-secondary: #8b4513;
+$color-accent: #d4a574;
+$color-light: #f5e6d3;
+$color-white: #ffffff;
+$color-dark: #1a1a1a;
+$color-text: #555;
+$color-text-light: #666;
+$color-text-muted: rgba(255, 255, 255, 0.8);
+$color-border: #f0f0f0;
+$color-overlay: rgba(0, 0, 0, 0.45);
+
+// Typography
+$font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+$font-heading: 'Playfair Display', serif;
+
+// Font Sizes
+$font-size-xs: 0.75rem;    // 12px
+$font-size-sm: 0.875rem;   // 14px
+$font-size-base: 1rem;     // 16px
+$font-size-lg: 1.125rem;   // 18px
+$font-size-xl: 1.25rem;    // 20px
+$font-size-2xl: 1.5rem;    // 24px
+$font-size-3xl: 2rem;      // 32px
+$font-size-4xl: 2.5rem;    // 40px
+$font-size-5xl: 3rem;      // 48px
+
+// Font Weights
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Spacing
+$spacing-xs: 0.5rem;   // 8px
+$spacing-sm: 0.75rem;   // 12px
+$spacing-md: 1rem;     // 16px
+$spacing-lg: 1.5rem;   // 24px
+$spacing-xl: 2rem;     // 32px
+$spacing-2xl: 2.5rem;  // 40px
+$spacing-3xl: 3rem;    // 48px
+$spacing-4xl: 4rem;    // 64px
+$spacing-5xl: 5rem;    // 80px
+
+// Breakpoints
+$breakpoint-xs: 480px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// Border Radius
+$radius-sm: 6px;
+$radius-md: 8px;
+$radius-lg: 12px;
+$radius-xl: 16px;
+$radius-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+$shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.15);
+$shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.2);
+
+// Transitions
+$transition-fast: 0.15s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease;
+
+// Z-index
+$z-index-dropdown: 1000;
+$z-index-sticky: 1020;
+$z-index-fixed: 1030;
+$z-index-modal-backdrop: 1040;
+$z-index-modal: 1050;
+$z-index-popover: 1060;
+$z-index-tooltip: 1070;
+
+// Container
+$container-max-width: 1200px;
+$container-padding: 2rem;

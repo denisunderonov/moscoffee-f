@@ -1,0 +1,112 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.footer {
+  background-color: $color-dark;
+  color: $color-white;
+  padding: $spacing-3xl 0 $spacing-lg;
+  margin-top: auto;
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: $spacing-xl;
+    margin-bottom: $spacing-xl;
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-md;
+    color: $color-white;
+    font-family: $font-heading;
+  }
+
+  &__subtitle {
+    font-size: $font-size-lg;
+    margin-bottom: $spacing-md;
+    color: $color-accent;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__text {
+    color: $color-text-muted;
+    line-height: 1.6;
+    font-size: $font-size-sm;
+  }
+
+  &__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  &__links li a {
+    color: $color-text-muted;
+    text-decoration: none;
+    transition: color $transition-base;
+    font-size: $font-size-sm;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  &__contacts {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  &__contacts li {
+    color: $color-text-muted;
+    font-size: $font-size-sm;
+    line-height: 1.6;
+  }
+
+  &__social {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  &__social-link {
+    color: $color-text-muted;
+    text-decoration: none;
+    transition: color $transition-base;
+    font-size: $font-size-sm;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: $spacing-lg;
+    text-align: center;
+  }
+
+  &__copyright {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: $font-size-xs;
+    margin: 0;
+  }
+
+  @include respond-to(md) {
+    &__content {
+      grid-template-columns: 1fr;
+      gap: $spacing-xl;
+    }
+  }
+}

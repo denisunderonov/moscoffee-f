@@ -1,0 +1,136 @@
+@use 'variables' as *;
+
+// Responsive breakpoints
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (max-width: #{$breakpoint-xs - 1px}) {
+      @content;
+    }
+  } @else if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $breakpoint == 2xl {
+    @media (min-width: $breakpoint-2xl) {
+      @content;
+    }
+  }
+}
+
+// Container
+@mixin container {
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+
+  @include respond-to(md) {
+    padding: 0 $spacing-lg;
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Button base
+@mixin button-base {
+  display: inline-block;
+  padding: $spacing-sm $spacing-xl;
+  border-radius: $radius-md;
+  font-weight: $font-weight-semibold;
+  text-decoration: none;
+  transition: all $transition-base;
+  border: 2px solid transparent;
+  font-size: $font-size-base;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+// Gradient backgrounds
+@mixin gradient-primary {
+  background: linear-gradient(135deg, $color-primary 0%, $color-secondary 100%);
+}
+
+@mixin gradient-secondary {
+  background: linear-gradient(135deg, $color-secondary 0%, $color-primary 100%);
+}
+
+// Card styles
+@mixin card {
+  background: $color-white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  transition: transform $transition-base, box-shadow $transition-base;
+}
+
+@mixin card-hover {
+  transform: translateY(-5px);
+  box-shadow: $shadow-lg;
+}
+
+// Section title with underline
+@mixin section-title {
+  font-size: $font-size-4xl;
+  margin-bottom: $spacing-xl;
+  color: $color-primary;
+  text-align: center;
+  position: relative;
+  padding-bottom: $spacing-md;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: $color-accent;
+    border-radius: 2px;
+  }
+
+  @include respond-to(md) {
+    font-size: $font-size-3xl;
+  }
+}
+
+// Text truncate
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Visually hidden (for accessibility)
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

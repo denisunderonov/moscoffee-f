@@ -1,0 +1,199 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.vacancies {
+  width: 100%;
+  padding-bottom: $spacing-4xl;
+
+  &__header {
+    @include gradient-primary;
+    color: $color-white;
+    padding: $spacing-4xl $spacing-xl;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: $font-size-5xl;
+    margin-bottom: $spacing-md;
+    color: $color-white;
+  }
+
+  &__subtitle {
+    font-size: $font-size-xl;
+    opacity: 0.9;
+  }
+
+  &__intro {
+    margin-top: $spacing-3xl;
+    text-align: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__intro-text {
+    font-size: $font-size-lg;
+    line-height: 1.8;
+    color: $color-text;
+  }
+
+  &__list {
+    margin-top: $spacing-3xl;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+  }
+
+  &__contact {
+    margin-top: $spacing-4xl;
+    padding: $spacing-3xl $spacing-xl;
+    background: $color-light;
+    border-radius: $radius-lg;
+    text-align: center;
+  }
+
+  &__contact-title {
+    font-size: $font-size-3xl;
+    margin-bottom: $spacing-md;
+    color: $color-primary;
+  }
+
+  &__contact-text {
+    font-size: $font-size-lg;
+    color: $color-text;
+    line-height: 1.7;
+
+    a {
+      color: $color-secondary;
+      text-decoration: underline;
+      font-weight: $font-weight-semibold;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+  }
+
+  @include respond-to(md) {
+    &__header {
+      padding: $spacing-3xl $spacing-lg;
+    }
+
+    &__title {
+      font-size: $font-size-3xl;
+    }
+
+    &__subtitle {
+      font-size: $font-size-base;
+    }
+  }
+}
+
+.vacancy {
+  &__card {
+    @include card;
+    padding: $spacing-xl;
+    border-left: 4px solid $color-accent;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: $shadow-lg;
+    }
+  }
+
+  &__header {
+    @include flex-between;
+    align-items: flex-start;
+    margin-bottom: $spacing-md;
+    flex-wrap: wrap;
+    gap: $spacing-md;
+  }
+
+  &__title {
+    font-size: $font-size-3xl;
+    color: $color-primary;
+    margin: 0;
+  }
+
+  &__salary {
+    background: $color-accent;
+    color: $color-white;
+    padding: $spacing-xs $spacing-md;
+    border-radius: $radius-sm;
+    font-weight: $font-weight-semibold;
+    font-size: $font-size-base;
+    white-space: nowrap;
+  }
+
+  &__description {
+    font-size: $font-size-lg;
+    line-height: 1.7;
+    color: $color-text;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__requirements {
+    margin-bottom: $spacing-lg;
+  }
+
+  &__requirements-title {
+    font-size: $font-size-lg;
+    color: $color-primary;
+    margin-bottom: $spacing-sm;
+    font-weight: $font-weight-semibold;
+  }
+
+  &__requirements-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__requirement-item {
+    padding: $spacing-xs 0;
+    padding-left: $spacing-lg;
+    position: relative;
+    color: $color-text-light;
+    line-height: 1.6;
+
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: $color-accent;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  &__apply-btn {
+    background: $color-secondary;
+    color: $color-white;
+    border: none;
+    padding: $spacing-sm $spacing-xl;
+    border-radius: $radius-md;
+    font-size: $font-size-base;
+    font-weight: $font-weight-semibold;
+    cursor: pointer;
+    transition: all $transition-base;
+
+    &:hover {
+      background: $color-primary;
+      transform: translateY(-2px);
+      box-shadow: $shadow-md;
+    }
+  }
+
+  @include respond-to(md) {
+    &__card {
+      padding: $spacing-lg;
+    }
+
+    &__header {
+      flex-direction: column;
+    }
+
+    &__title {
+      font-size: $font-size-2xl;
+    }
+  }
+}

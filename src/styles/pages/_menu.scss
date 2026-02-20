@@ -1,0 +1,97 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.menu {
+  width: 100%;
+  padding-bottom: $spacing-4xl;
+
+  &__header {
+    @include gradient-primary;
+    color: $color-white;
+    padding: $spacing-4xl $spacing-xl;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: $font-size-5xl;
+    margin-bottom: $spacing-md;
+    color: $color-white;
+  }
+
+  &__subtitle {
+    font-size: $font-size-xl;
+    opacity: 0.9;
+  }
+
+  &__section {
+    margin-top: $spacing-4xl;
+  }
+
+  &__section-title {
+    @include section-title;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: $spacing-xl;
+    margin-top: $spacing-xl;
+  }
+
+  &__card {
+    @include card;
+    overflow: hidden;
+    border: 1px solid $color-border;
+
+    &:hover {
+      @include card-hover;
+    }
+  }
+
+  &__card-content {
+    padding: $spacing-lg;
+  }
+
+  &__card-title {
+    font-size: $font-size-2xl;
+    margin-bottom: $spacing-sm;
+    color: $color-primary;
+  }
+
+  &__card-description {
+    color: $color-text-light;
+    line-height: 1.6;
+    margin-bottom: $spacing-md;
+    font-size: $font-size-sm;
+  }
+
+  &__card-price {
+    font-size: $font-size-2xl;
+    font-weight: $font-weight-bold;
+    color: $color-secondary;
+    font-family: $font-heading;
+  }
+
+  @include respond-to(md) {
+    &__header {
+      padding: $spacing-3xl $spacing-lg;
+    }
+
+    &__title {
+      font-size: $font-size-3xl;
+    }
+
+    &__subtitle {
+      font-size: $font-size-base;
+    }
+
+    &__section-title {
+      font-size: $font-size-3xl;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+  }
+}
